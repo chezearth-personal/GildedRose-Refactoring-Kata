@@ -42,11 +42,6 @@ export class GildedRose {
           : 0
         item.sellIn--;
       }
-        // item.name !== 'Aged Brie' && item.name !== 'Backstage passes' // very much simplified logic, to be expanded
-          // ? item.quality-- 
-          // : item.quality < 50
-            // ? item.quality++
-            // : item.quality
     );
     return updatedItems;
   }
