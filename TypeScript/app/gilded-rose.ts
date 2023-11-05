@@ -20,12 +20,32 @@ export class GildedRose {
   updateQualityRevised() {
     const updatedItems = this.items
       .filter(item => item && item.name) // make sure there is an item and it has a name
-      .map(item =>
-        item.name !== 'Aged Brie' && item.name !== 'Backstage passes' // very much simplified logic, to be expanded
-          ? item.quality-- 
-          : item.quality < 50
-            ? item.quality++
-            : item.quality
+      .map(item => {
+        if (item.name.substring(0, 8).toLowerCase() === 'sulfaros') {
+          return item;
+        }
+        let quality = item.quality;
+        const sellIn = item.sellIn;
+        if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
+          item.quality++;
+          item.sellIn--;
+          return item;
+        }
+        if (item.name.toLowerCase() === 'aged brie') {
+          item.quality += quality < 50 ? quality++ : quality;
+          item.sellIn--;
+        }
+        item.quality = quality > 1
+          ? sellIn > 0
+            ? quality-=2
+            : quality--
+          : 0
+      }
+        // item.name !== 'Aged Brie' && item.name !== 'Backstage passes' // very much simplified logic, to be expanded
+          // ? item.quality-- 
+          // : item.quality < 50
+            // ? item.quality++
+            // : item.quality
     );
     return updatedItems;
   }
