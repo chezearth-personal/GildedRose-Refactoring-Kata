@@ -19,7 +19,7 @@ export class GildedRose {
 
   updateQualityRevised() {
     const updatedItems = this.items
-      .filter(item => item && item.name) // make sure there is an item and it has a name
+      .filter(item => item && item.name)  // make sure there is an item and it has a name
       .map(item => {
         if (item.name.substring(0, 8).toLowerCase() === 'sulfaros') {
           return item;
@@ -27,7 +27,7 @@ export class GildedRose {
         let quality = item.quality;
         const sellIn = item.sellIn;
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
-          item.quality++;
+          item.quality++; // complex, so move to later
           item.sellIn--;
           return item;
         }
@@ -35,11 +35,12 @@ export class GildedRose {
           item.quality += quality < 50 ? quality++ : quality;
           item.sellIn--;
         }
-        item.quality = quality > 1
+        item.quality = quality > 1        // if 1, it'll decreaase to zero
           ? sellIn > 0
-            ? quality-=2
-            : quality--
+            ? quality-=2                  // if the sellIn passed and quality 2 or more, then decrease by 2
+            : quality--                   // if sellIn not yet passed and quality 2 or more, then decrease by 1
           : 0
+        item.sellIn--;
       }
         // item.name !== 'Aged Brie' && item.name !== 'Backstage passes' // very much simplified logic, to be expanded
           // ? item.quality-- 
