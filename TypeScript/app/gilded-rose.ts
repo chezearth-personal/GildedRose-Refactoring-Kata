@@ -17,6 +17,19 @@ export class GildedRose {
     this.items = items;
   }
 
+  updateQualityRevised() {
+    const updatedItems = this.items
+      .filter(item => item && item.name) // make sure there is an item and it has a name
+      .map(item =>
+        item.name !== 'Aged Brie' && item.name !== 'Backstage passes' // very much simplified logic, to be expanded
+          ? item.quality-- 
+          : item.quality < 50
+            ? item.quality++
+            : item.quality
+    );
+    return updatedItems;
+  }
+
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
