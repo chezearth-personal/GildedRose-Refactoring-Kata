@@ -82,7 +82,7 @@ describe('Gilded Rose', () => {
     });
   });
   describe('should handle `Backstage passes`', () => {
-    const gildedRose = new GildedRose([new Item('backstage passes', 11, 42)]);
+    const gildedRose = new GildedRose([new Item('backstage passes', 11, 34)]);
     let items;
     beforeEach(function() {
       items = gildedRose.updateQuality();
@@ -92,13 +92,43 @@ describe('Gilded Rose', () => {
       console.log(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(10);
-      expect(items[0].quality).to.equal(43);
+      expect(items[0].quality).to.equal(35);
     });
     it ('handle the second update', () => {
       console.log(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(9);
-      expect(items[0].quality).to.equal(45);
+      expect(items[0].quality).to.equal(37);
+    });
+    it ('handle the third update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(8);
+      expect(items[0].quality).to.equal(39);
+    });
+    it ('handle the fourth update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(7);
+      expect(items[0].quality).to.equal(41);
+    });
+    it ('handle the fifth update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(6);
+      expect(items[0].quality).to.equal(43);
+    });
+    it ('handle the fifth update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(5);
+      expect(items[0].quality).to.equal(46);
+    });
+    it ('handle the fifth update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(4);
+      expect(items[0].quality).to.equal(49);
     });
   });
 });
