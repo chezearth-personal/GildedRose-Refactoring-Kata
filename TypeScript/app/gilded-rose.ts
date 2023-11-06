@@ -1,3 +1,5 @@
+import {kill} from "process";
+
 export class Item {
   name: string;
   sellIn: number;
@@ -27,39 +29,20 @@ export class GildedRose {
           return item;
         }
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
-          // console.log('sellIn =', item.sellIn);
-          // console.log('quality =', item.quality);
-          if (item.sellIn > 10) {
-            item = this.degradeItem(item, 1)
-            // item.quality++;
-          } else {
-            // console.log('! > 10: sellIn =', item.sellIn);
-            if (item.sellIn > 5) {
-              // console.log('> 5: sellIn =', item.sellIn);
-              item = this.degradeItem(item, 2);
-              // item.quality+=2;
-            } else {
-              // console.log('! > 5: sellIn =', item.sellIn);
-              item.quality = item.sellIn > 0 
-                ? item.quality + 3
-                : 0;
-            }
-          }
-          // console.log('quality =', item.quality);
-          item.quality = item.quality > 50 ? 50 : item.quality;
-          item.sellIn--;
-          return item;
+          return item.sellIn > 10
+            ? this.degradeItem(item, 1)
+            : item.sellIn > 5
+              ? this.degradeItem(item, 2)
+              : item.sellIn > 0
+                ? this.degradeItem(item, 3)
+                : this.killItem(item)
         }
         if (item.name.toLowerCase() === 'aged brie') {
-          item.quality += (item.quality < 50 ? 1 : 0);
-          item.sellIn--;
-          return item;
+          return this.degradeItem(item, 1)
         }
-        item.quality = item.quality > 1
-          ? item.sellIn > 0 ? item.quality - 1 : item.quality - 2
-          : item.quality = 0;
-        item.sellIn--;
-        return item;
+        return item.quality > 1
+          ? item.sellIn > 0 ? this.degradeItem(item, -1) : this.degradeItem(item, -2)
+          : this.killItem(item);        // item.quality = item.quality > 1
       })
     return this.items;
   }
@@ -67,6 +50,13 @@ export class GildedRose {
   degradeItem(item: Item, rate: number) {
     item.quality = item.quality + rate;
     item.quality = item.quality > 50 ? 50 : item.quality < 0 ? 0 : item.quality;
+    item.sellIn--;
+    return item;
+  }
+
+  killItem(item: Item) {
+    item.quality = 0;
+    item.sellIn--;
     return item;
   }
 
