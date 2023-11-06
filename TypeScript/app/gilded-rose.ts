@@ -30,12 +30,14 @@ export class GildedRose {
           // console.log('sellIn =', item.sellIn);
           // console.log('quality =', item.quality);
           if (item.sellIn > 10) {
-            item.quality++;
+            item = this.degradeItem(item, 1)
+            // item.quality++;
           } else {
             // console.log('! > 10: sellIn =', item.sellIn);
             if (item.sellIn > 5) {
               // console.log('> 5: sellIn =', item.sellIn);
-              item.quality+=2;
+              item = this.degradeItem(item, 2);
+              // item.quality+=2;
             } else {
               // console.log('! > 5: sellIn =', item.sellIn);
               item.quality = item.sellIn > 0 
@@ -62,7 +64,11 @@ export class GildedRose {
     return this.items;
   }
 
-
+  degradeItem(item: Item, rate: number) {
+    item.quality = item.quality + rate;
+    item.quality = item.quality > 50 ? 50 : item.quality < 0 ? 0 : item.quality;
+    return item;
+  }
 
   updateQualityOld() {
     for (let i = 0; i < this.items.length; i++) {
