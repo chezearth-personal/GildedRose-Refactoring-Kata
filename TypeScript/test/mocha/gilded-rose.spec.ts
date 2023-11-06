@@ -11,25 +11,25 @@ describe('Gilded Rose', () => {
       return items;
     })
     it ('handle the first update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(gildedRose.items[0].name).to.equal('foo');
       expect(gildedRose.items[0].sellIn).to.equal(0);
       expect(gildedRose.items[0].quality).to.equal(3);
     });
     it ('handle the second update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(gildedRose.items[0].name).to.equal('foo');
       expect(gildedRose.items[0].sellIn).to.equal(-1);
       expect(gildedRose.items[0].quality).to.equal(1);
     });
     it ('handle the third update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(gildedRose.items[0].name).to.equal('foo');
       expect(gildedRose.items[0].sellIn).to.equal(-2);
       expect(gildedRose.items[0].quality).to.equal(0);
     });
     it ('handle the fourth update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(gildedRose.items[0].name).to.equal('foo');
       expect(gildedRose.items[0].sellIn).to.equal(-3);
       expect(gildedRose.items[0].quality).to.equal(0);
@@ -43,19 +43,19 @@ describe('Gilded Rose', () => {
       return items;
     })
     it ('handle the first update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('Aged Brie');
       expect(items[0].sellIn).to.equal(1);
       expect(items[0].quality).to.equal(49);
     });
     it ('handle the second update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('Aged Brie');
       expect(items[0].sellIn).to.equal(0);
       expect(items[0].quality).to.equal(50);
     });
     it ('handle the third uopdate', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('Aged Brie');
       expect(items[0].sellIn).to.equal(-1);
       expect(items[0].quality).to.equal(50);
@@ -69,66 +69,100 @@ describe('Gilded Rose', () => {
       return items;
     })
     it ('handle the first update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('Sulfuras');
       expect(items[0].sellIn).to.equal(365);
       expect(items[0].quality).to.equal(50);
     });
     it ('handle the second update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('Sulfuras');
       expect(items[0].sellIn).to.equal(365);
       expect(items[0].quality).to.equal(50);
     });
   });
   describe('should handle `Backstage passes`', () => {
-    const gildedRose = new GildedRose([new Item('backstage passes', 11, 34)]);
+    const gildedRose = new GildedRose([new Item('backstage passes', 11, 32)]);
     let items;
     beforeEach(function() {
       items = gildedRose.updateQuality();
       return items;
     })
     it ('handle the first update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(10);
-      expect(items[0].quality).to.equal(35);
+      expect(items[0].quality).to.equal(33);
     });
     it ('handle the second update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(9);
-      expect(items[0].quality).to.equal(37);
+      expect(items[0].quality).to.equal(35);
     });
     it ('handle the third update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(8);
-      expect(items[0].quality).to.equal(39);
+      expect(items[0].quality).to.equal(37);
     });
     it ('handle the fourth update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(7);
-      expect(items[0].quality).to.equal(41);
+      expect(items[0].quality).to.equal(39);
     });
     it ('handle the fifth update', () => {
-      console.log(items[0]);
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(6);
-      expect(items[0].quality).to.equal(43);
+      expect(items[0].quality).to.equal(41);
     });
-    it ('handle the fifth update', () => {
-      console.log(items[0]);
+    it ('handle the sixth update', () => {
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(5);
-      expect(items[0].quality).to.equal(46);
+      expect(items[0].quality).to.equal(43);
     });
-    it ('handle the fifth update', () => {
-      console.log(items[0]);
+    it ('handle the seventh update', () => {
+      logNewItem(items[0]);
       expect(items[0].name).to.equal('backstage passes');
       expect(items[0].sellIn).to.equal(4);
+      expect(items[0].quality).to.equal(46);
+    });
+    it ('handle the eighth update', () => {
+      logNewItem(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(3);
       expect(items[0].quality).to.equal(49);
+    });
+    it ('handle the ninth update', () => {
+      logNewItem(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(2);
+      expect(items[0].quality).to.equal(50);
+    });
+    it ('handle the ninth update', () => {
+      logNewItem(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(1);
+      expect(items[0].quality).to.equal(50);
+    });
+    it ('handle the ninth update', () => {
+      logNewItem(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(0);
+      expect(items[0].quality).to.equal(50);
+    });
+    it ('handle the ninth update', () => {
+      logNewItem(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(-1);
+      expect(items[0].quality).to.equal(0);
     });
   });
 });
+
+function logNewItem(item) {
+  console.log('      becomes:', item);
+}

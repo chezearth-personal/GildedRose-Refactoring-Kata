@@ -27,20 +27,23 @@ export class GildedRose {
           return item;
         }
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
-          console.log('sellIn =', item.sellIn);
-          console.log('quality =', item.quality);
+          // console.log('sellIn =', item.sellIn);
+          // console.log('quality =', item.quality);
           if (item.sellIn > 10) {
             item.quality++;
           } else {
-            item.sellIn > 5 
-              ? item.quality+=2 
-              : item.sellIn > 0 
-                ? 0 
-                : item.quality+=3;
+            // console.log('! > 10: sellIn =', item.sellIn);
+            if (item.sellIn > 5) {
+              // console.log('> 5: sellIn =', item.sellIn);
+              item.quality+=2;
+            } else {
+              // console.log('! > 5: sellIn =', item.sellIn);
+              item.quality = item.sellIn > 0 
+                ? item.quality + 3
+                : 0;
+            }
           }
-          // item.quality = item.sellIn > 10
-            // ? item.quality++ 
-            // : 
+          // console.log('quality =', item.quality);
           item.quality = item.quality > 50 ? 50 : item.quality;
           item.sellIn--;
           return item;
@@ -58,6 +61,8 @@ export class GildedRose {
       })
     return this.items;
   }
+
+
 
   updateQualityOld() {
     for (let i = 0; i < this.items.length; i++) {
