@@ -22,8 +22,8 @@ export class GildedRose {
   updateQuality() {
     this.items
       .forEach(item => {
-        if (!item || !item.name) { return; }  // make sure there is an item and it has a name
-        if (item.name.substring(0, 8).toLowerCase() === 'sulfuras') {
+        if (!item || !item.name) { return; }                          // make sure there is an item and it has a name
+        if (item.name.substring(0, 8).toLowerCase() === 'sulfuras') { // The legendary items is set to max
           item.quality = 50;
           item.sellIn = 365;
           return item;
@@ -40,11 +40,15 @@ export class GildedRose {
         if (item.name.toLowerCase() === 'aged brie') {
           return this.degradeItem(item, 1)
         }
-        return item.quality > 1
-          ? item.sellIn > 0 ? this.degradeItem(item, -1) : this.degradeItem(item, -2)
-          : this.killItem(item);        // item.quality = item.quality > 1
-      })
+        return this.defaultDegrade(item, -1)
+      });
     return this.items;
+  }
+
+  defaultDegrade(item, rate) {
+    return item.quality > 1
+      ? item.sellIn > 0 ? this.degradeItem(item, rate) : this.degradeItem(item, rate * 2)
+      : this.killItem(item);
   }
 
   degradeItem(item: Item, rate: number) {
