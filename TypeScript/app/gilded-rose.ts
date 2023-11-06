@@ -16,7 +16,8 @@ export class Item {
 export class GildedRose {
   items: Array<Item>;
   /**
-   * Insert any objects with string names and define rates to have them follow the rules laid out in updateQuality 
+   * Types-List: insert any objects with string names and define rates to have them follow the rules laid out
+   * in updateQuality 
    */
   type1 = [{ name: 'sulfuras', rate: 1 }];
   type2 = [{ name: 'backstage passes', rate: 1 }];
