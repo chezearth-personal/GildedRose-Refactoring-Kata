@@ -161,6 +161,38 @@ describe('Gilded Rose', () => {
       expect(items[0].quality).to.equal(0);
     });
   });
+  describe('should Conjured', () => {
+    const gildedRose = new GildedRose([new Item('conjured', 1, 7)]);
+    let items;
+    beforeEach(function() {
+      items = gildedRose.updateQuality();
+      return items;
+    })
+    it ('handle the first update', () => {
+      logNewItem(items[0]);
+      expect(gildedRose.items[0].name).to.equal('conjured');
+      expect(gildedRose.items[0].sellIn).to.equal(0);
+      expect(gildedRose.items[0].quality).to.equal(5);
+    });
+    it ('handle the second update', () => {
+      logNewItem(items[0]);
+      expect(gildedRose.items[0].name).to.equal('conjured');
+      expect(gildedRose.items[0].sellIn).to.equal(-1);
+      expect(gildedRose.items[0].quality).to.equal(1);
+    });
+    it ('handle the third update', () => {
+      logNewItem(items[0]);
+      expect(gildedRose.items[0].name).to.equal('conjured');
+      expect(gildedRose.items[0].sellIn).to.equal(-2);
+      expect(gildedRose.items[0].quality).to.equal(0);
+    });
+    it ('handle the fourth update', () => {
+      logNewItem(items[0]);
+      expect(gildedRose.items[0].name).to.equal('conjured');
+      expect(gildedRose.items[0].sellIn).to.equal(-3);
+      expect(gildedRose.items[0].quality).to.equal(0);
+    });
+  });
 });
 
 function logNewItem(item) {
