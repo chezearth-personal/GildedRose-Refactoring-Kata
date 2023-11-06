@@ -27,7 +27,14 @@ export class GildedRose {
           return item;
         }
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
-          item.quality++; // complex, so move to later
+          item.quality = item.sellIn > 10
+            ? item.quality++ 
+            : item.sellIn > 5 
+              ? item.quality+=2 
+              : item.sellIn > 0 
+                ? 0 
+                : item.quality+=3;
+          item.quality = item.quality > 50 ? 50 : item.quality;
           item.sellIn--;
           return item;
         }

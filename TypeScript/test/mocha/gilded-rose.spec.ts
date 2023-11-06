@@ -81,4 +81,24 @@ describe('Gilded Rose', () => {
       expect(items[0].quality).to.equal(50);
     });
   });
+  describe('should handle `Sulfuras`', () => {
+    const gildedRose = new GildedRose([new Item('backstage passes', 11, 42)]);
+    let items;
+    beforeEach(function() {
+      items = gildedRose.updateQuality();
+      return items;
+    })
+    it ('handle the first update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(10);
+      expect(items[0].quality).to.equal(43);
+    });
+    it ('handle the second update', () => {
+      console.log(items[0]);
+      expect(items[0].name).to.equal('backstage passes');
+      expect(items[0].sellIn).to.equal(9);
+      expect(items[0].quality).to.equal(45);
+    });
+  });
 });
