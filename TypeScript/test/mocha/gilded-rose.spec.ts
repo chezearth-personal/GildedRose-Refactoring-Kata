@@ -81,7 +81,7 @@ describe('Gilded Rose', () => {
       expect(items[0].quality).to.equal(50);
     });
   });
-  describe('should handle `Sulfuras`', () => {
+  describe('should handle `Backstage passes`', () => {
     const gildedRose = new GildedRose([new Item('backstage passes', 11, 42)]);
     let items;
     beforeEach(function() {

@@ -27,20 +27,25 @@ export class GildedRose {
           return item;
         }
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
-          item.quality = item.sellIn > 10
-            ? item.quality++ 
-            : item.sellIn > 5 
+          console.log('sellIn =', item.sellIn);
+          console.log('quality =', item.quality);
+          if (item.sellIn > 10) {
+            item.quality++;
+          } else {
+            item.sellIn > 5 
               ? item.quality+=2 
               : item.sellIn > 0 
                 ? 0 
                 : item.quality+=3;
+          }
+          // item.quality = item.sellIn > 10
+            // ? item.quality++ 
+            // : 
           item.quality = item.quality > 50 ? 50 : item.quality;
           item.sellIn--;
           return item;
         }
         if (item.name.toLowerCase() === 'aged brie') {
-          console.log('sellIn =', item.sellIn);
-          console.log('quality =', item.quality);
           item.quality += (item.quality < 50 ? 1 : 0);
           item.sellIn--;
           return item;
