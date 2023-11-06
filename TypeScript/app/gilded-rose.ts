@@ -18,32 +18,33 @@ export class GildedRose {
   }
 
   updateQuality() {
-    const updatedItems = this.items
-      .filter(item => item && item.name)  // make sure there is an item and it has a name
-      .map(item => {
-        if (item.name.substring(0, 8).toLowerCase() === 'sulfaros') {
+    this.items
+      .forEach(item => {
+        if (!item || !item.name) { return; }  // make sure there is an item and it has a name
+        if (item.name.substring(0, 8).toLowerCase() === 'sulfuras') {
+          item.quality = 50;
+          item.sellIn = 365;
           return item;
         }
-        let quality = item.quality;
-        const sellIn = item.sellIn;
         if (item.name.substring(0, 16).toLowerCase() === 'backstage passes') {
           item.quality++; // complex, so move to later
           item.sellIn--;
           return item;
         }
         if (item.name.toLowerCase() === 'aged brie') {
-          item.quality += quality < 50 ? quality++ : quality;
+          console.log('sellIn =', item.sellIn);
+          console.log('quality =', item.quality);
+          item.quality += (item.quality < 50 ? 1 : 0);
           item.sellIn--;
+          return item;
         }
-        item.quality = quality > 1        // if 1, it'll decreaase to zero
-          ? sellIn > 0
-            ? quality-=2                  // if the sellIn passed and quality 2 or more, then decrease by 2
-            : quality--                   // if sellIn not yet passed and quality 2 or more, then decrease by 1
-          : 0
+        item.quality = item.quality > 1
+          ? item.sellIn > 0 ? item.quality - 1 : item.quality - 2
+          : item.quality = 0;
         item.sellIn--;
-      }
-    );
-    return updatedItems;
+        return item;
+      })
+    return this.items;
   }
 
   updateQualityOld() {
