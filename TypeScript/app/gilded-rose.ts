@@ -16,13 +16,13 @@ export class Item {
 export class GildedRose {
   items: Array<Item>;
   /**
-   * Types-List: insert any objects with string names and define rates to have them follow the rules laid out
-   * in updateQuality 
+   * Types-List: insert any objects with string names and rates to have them follow the rules for each type in the
+   * `updateQuality()` method. The rate is just used for the particular instance
    */
-  type1 = [{ name: 'sulfuras', rate: 1 }];
-  type2 = [{ name: 'backstage passes', rate: 1 }];
-  type3 = [{ name: 'aged brie', rate: 1 }];
-  typedefault = [{ name: 'conjured', rate: 2 }];
+  type1 = [{ name: 'sulfuras', rate: 1 }];                              // type1 are the legendary items
+  type2 = [{ name: 'backstage passes', rate: 1 }];                      // type2 are the complicated version of 'aged brie'
+  type3 = [{ name: 'aged brie', rate: 1 }]                              // type3 are the 'aged brie' that don't degrade over time
+  typedefault = [{ name: 'conjured', rate: 2 }];                        // the remaining default type ('Conjured' added at the end).
 
   constructor(items = [] as Array<Item>) {
     this.items = items;
@@ -31,8 +31,8 @@ export class GildedRose {
   updateQuality() {
     this.items
       .forEach(item => {
-        const nm = item.name.toLowerCase();
         if (!item || !item.name) { return; }                            // make sure there is an item and it has a name
+        const nm = item.name.toLowerCase();
         if (this.type1.map(e => e.name).includes(nm.substring(0, 8))) { // The legendary items is set to max
           item.quality = 50;
           item.sellIn = 365;
